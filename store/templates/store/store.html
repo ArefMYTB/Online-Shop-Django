@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Store</title>
+</head>
+<body>
+
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+	<div class="row">
+        {% for product in products %}
+            <div class="col-lg-4">
+                <img class="thumbnail" src="{{product.imageURL}}">
+                <div class="box-element product">
+                    <h6><strong>{{product.name}}</strong></h6>
+                    <hr>
+<!--                    <button class="btn btn-outline-secondary add-btn" onclick="add_product()">Add to Cart</button>-->
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-secondary add-btn" value="{{product}}" name="add_cart">Add to Cart</button>
+                    </form>
+                    <a class="btn btn-outline-success" href="#">View</a>
+                    <h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
+
+                </div>
+            </div>
+        {% endfor %}
+
+	</div>
+
+<!--<script>-->
+<!--function add_product() {-->
+<!--&lt;!&ndash;  element.style.color = "red";&ndash;&gt;-->
+<!--    -->
+<!--}-->
+<!--</script>-->
+
+
+{% endblock content %}
+
+
+</body>
+</html>
